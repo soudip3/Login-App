@@ -1,0 +1,54 @@
+.nav{
+    justify-content:space-evenly;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    margin: 0;
+    margin-left: 2rem;
+}
+
+.nav a {
+    text-decoration: none;
+    color : white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.nav button {
+    color:white;
+    background-color: rgb(202, 30, 202);
+    font-size : 18px;
+    border-radius:24px;
+    border-color: transparent;
+    margin: 0;
+    margin-right: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+    .nav a{
+        font-size:12px;
+        font-weight: bold;
+    }
+    .nav li {
+        margin: 0;
+        margin-left: 1rem;
+    }
+    .nav button {
+        color:white;
+        background-color: rgb(202, 30, 202);
+        font-size : 12px;
+        border-radius:24px;
+        border-color: transparent;
+        margin: 0;
+        margin-right: .5rem;
+    }
+}
+
