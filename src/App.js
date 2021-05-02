@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './App.css';
 import Header from './Components/MainHeader/Header'
 import Login from './Components/Login/Login'
@@ -23,6 +23,21 @@ function App() {
 
   const [check, setCheck] = useState(false)
   const [error, setError] = useState([])
+  const [user, setUser] = useState([])
+    
+
+  useEffect( () => {
+    const userStoreLoggedIn = localStorage.getItem('isLoggedIn')
+    const userData = data.filter( d => {
+      return d.id === parseInt(userStoreLoggedIn);
+    })
+    if(userData.length===1){
+      setCheck(true)
+      setUser(userData)
+    }
+  },[])
+
+
   const onCheckLogin =(emailRef,passwordRef) => {
     if(emailRef.trim().length===0 || passwordRef.length === 0){
       const e = {
@@ -32,11 +47,13 @@ function App() {
       setError(e)
     }
     else {
-      const user = data.filter( d => {
+      const userData = data.filter( d => {
         return d.email === emailRef && d.password === passwordRef;
       })
-      if(user.length){
+      if(userData.length){
         setCheck(true)
+        setUser(userData)
+        localStorage.setItem('isLoggedIn',userData[0].id)
       }
       else{
         const e = {
@@ -59,7 +76,7 @@ function App() {
     <div className="App">
       <Header logOut={logout} home={check}></Header>
       {!check && <Login checkLogin={onCheckLogin}></Login>}
-      {check && <Home></Home>}
+      {check && <Home value={user}></Home>}
       {error.length!==0 && <Error content={error.content} header={error.header} onError={errorCheck}></Error>}
     </div>
   );
