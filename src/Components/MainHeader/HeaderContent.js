@@ -1,7 +1,10 @@
 import React from 'react' 
 import classes from '../MainHeader/HeaderContent.module.css'
 
-const HeaderContent = () =>{
+const HeaderContent = (props) =>{
+    const logout = () =>{
+        props.logOut()
+    }
     return (
         <div className={classes.nav}>
             <ul>
@@ -12,7 +15,7 @@ const HeaderContent = () =>{
                     <a href="\">Admin</a>
                 </li>
                 <li>
-                    <button>Log Out</button>
+                    <button onClick={logout}>Log Out</button>
                 </li>
             </ul>
         </div>
